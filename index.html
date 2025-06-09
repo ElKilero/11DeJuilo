@@ -3,53 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuenta Regresiva al 11 de Julio de 2025</title>
+    <title>Cuenta Regresiva - Hotel Ryu Cabo San Lucas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo animado de ondas */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: waves 20s ease-in-out infinite;
+        }
+
+        @keyframes waves {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #countdown {
-            background-color: #333;
-            color: #fff;
+            min-height: 100vh;
             padding: 20px;
-            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hotel-header {
             text-align: center;
+            margin-bottom: 30px;
+            color: white;
         }
-        #countdown div {
-            display: inline-block;
-            margin: 0 10px;
+
+        .hotel-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        #countdown span {
+
+        .hotel-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        .location {
+            font-size: 1em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .vacation-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .vacation-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .vacation-title p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        #countdown {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px 30px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        #countdown::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.6; }
+        }
+
+        .time-unit {
+            text-align: center;
+            color: #2c3e50;
+            min-width: 100px;
+            position: relative;
+        }
+
+        .time-unit::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 1px;
+        }
+
+        .time-number {
+            font-size: 3.5em;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .time-label {
+            font-size: 1.1em;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #34495e;
+            margin-top: 8px;
+        }
+
+        .beach-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
             font-size: 2em;
-            font-weight: bold;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .palm-trees {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(46, 125, 50, 0.3), transparent);
+            pointer-events: none;
+        }
+
+        .celebration {
+            text-align: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            animation: celebrationPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes celebrationPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); }
+            50% { transform: scale(1.02); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3); }
+        }
+
+        .celebration h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .celebration p {
+            font-size: 1.5em;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hotel-logo {
+                font-size: 2.5em;
+            }
+            
+            .vacation-title h1 {
+                font-size: 2em;
+            }
+            
+            #countdown {
+                gap: 20px;
+                padding: 30px 20px;
+            }
+            
+            .time-number {
+                font-size: 2.5em;
+            }
+            
+            .time-unit {
+                min-width: 80px;
+            }
+            
+            .celebration h1 {
+                font-size: 2.2em;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="countdown">
-        <div>
-            <span id="days"></span>
-            <div>Días</div>
+    <div class="container">
+        <div class="hotel-header">
+            <div class="hotel-logo">RYU</div>
+            <div class="hotel-subtitle">Luxury Resort</div>
+            <div class="location">Cabo San Lucas, México</div>
         </div>
-        <div>
-            <span id="hours"></span>
-            <div>Horas</div>
+
+        <div class="vacation-title">
+            <h1>¡Faltan solo...</h1>
+            <p>Para vivir la experiencia perfecta en el paraíso</p>
         </div>
-        <div>
-            <span id="minutes"></span>
-            <div>Minutos</div>
+
+        <div id="countdown">
+            <div class="time-unit">
+                <span class="time-number" id="days">00</span>
+                <div class="time-label">Días</div>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="hours">00</span>
+                <div class="time-label">Horas</div>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="minutes">00</span>
+                <div class="time-label">Minutos</div>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="seconds">00</span>
+                <div class="time-label">Segundos</div>
+            </div>
         </div>
-        <div>
-            <span id="seconds"></span>
-            <div>Segundos</div>
+
+        <div class="beach-icons">
+            🏖️ 🌴 ☀️ 🏨 🍹
         </div>
     </div>
+
+    <div class="palm-trees"></div>
 
     <script>
         // Fecha objetivo: 11 de julio de 2025
@@ -64,14 +321,23 @@
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('minutes').innerText = minutes;
-            document.getElementById('seconds').innerText = seconds;
+            // Agregar ceros a la izquierda para formato consistente
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
 
             if (timeLeft < 0) {
                 clearInterval(interval);
-                document.getElementById('countdown').innerHTML = "<h1>¡Llegó el 11 de julio de 2025!</h1>";
+                document.querySelector('.container').innerHTML = `
+                    <div class="celebration">
+                        <h1>¡Bienvenidos al Hotel Ryu! 🎉</h1>
+                        <p>¡Ha llegado el momento de disfrutar el paraíso en Cabo San Lucas!</p>
+                        <div class="beach-icons" style="margin-top: 30px; font-size: 3em;">
+                            🏖️ 🌊 🍹 🌴 ☀️
+                        </div>
+                    </div>
+                `;
             }
         }
 
